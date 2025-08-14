@@ -9,7 +9,7 @@ on:
 
 env:
   PATH_PROJECT_FILE: ./sql-ai/MssqlMcp/Node/package.json
-  PATH_PROJECT: ./sql-ai/MssqlMcp/Node/
+  PATH_PROJECT: ./sql-ai/MssqlMcp/Node
   NUGET_SERVER: https://api.nuget.org/v3/index.json
   SQLSERVER_MCP_REPO: https://github.com/Azure-Samples/SQL-AI-samples.git
   NPM_REGISTRY: https://registry.npmjs.org/
