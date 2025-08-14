@@ -69,6 +69,11 @@ jobs:
             npm run build
           fi
 
+      - name: Exibir arquivos gerados após build
+        run: |
+          cd ${{ env.PATH_PROJECT }}/dist
+          ls -l
+
       # - name: Gerar README.md para o package
       #   run: |
       #     cd ${{ env.PATH_PROJECT }}
@@ -131,7 +136,7 @@ jobs:
       #     cd out
       #     ls -l
   
-      - name: Push no NuGet
-        run: |
-          cd out
-          dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ env.NUGET_SERVER }}
+      # - name: Push no NuGet
+      #   run: |
+      #     cd out
+      #     dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ env.NUGET_SERVER }}
