@@ -40,7 +40,7 @@ jobs:
           ls -l
           echo
           echo
-          cd MssqlMcp/Node/MssqlMcp
+          cd MssqlMcp/Node
           pwd
           ls -l
 
