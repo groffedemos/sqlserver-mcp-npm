@@ -9,9 +9,10 @@ on:
 
 env:
   PATH_PROJECT_FILE: ./sql-ai/MssqlMcp/dotnet/MssqlMcp/MssqlMcp.csproj
-  PATH_PROJECT: ./sql-ai/MssqlMcp/dotnet/MssqlMcp/
+  PATH_PROJECT: ./sql-ai/MssqlMcp/Node/
   NUGET_SERVER: https://api.nuget.org/v3/index.json
   SQLSERVER_MCP_REPO: https://github.com/Azure-Samples/SQL-AI-samples.git
+  NPM_REGISTRY: https://registry.npmjs.org/
 
 jobs:
   build:
@@ -43,6 +44,18 @@ jobs:
           cd MssqlMcp/Node
           pwd
           ls -l
+
+      - name: Instalar dependencias
+        run: |
+          cd ${{ env.PATH_PROJECT }}
+          npm install
+
+      - name: Build do package
+        run: |
+          cd ${{ env.PATH_PROJECT }}
+          if [ -f package.json ] && grep -q '"build"' package.json; then
+            npm run build
+          fi
 
       # - name: Gerar README.md para o package
       #   run: |
@@ -101,10 +114,10 @@ jobs:
 #      - name: Geracao do package
 #        run: dotnet pack ${{ env.PATH_PROJECT_FILE }} -c Release -o out
       
-      - name: Exibir arquivos gerados apos build
-        run: |
-          cd out
-          ls -l
+      # - name: Exibir arquivos gerados apos build
+      #   run: |
+      #     cd out
+      #     ls -l
   
       - name: Push no NuGet
         run: |
