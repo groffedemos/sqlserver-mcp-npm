@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  PATH_PROJECT_FILE: ./sql-ai/MssqlMcp/dotnet/MssqlMcp/MssqlMcp.csproj
+  PATH_PROJECT_FILE: ./sql-ai/MssqlMcp/Node/package.json
   PATH_PROJECT: ./sql-ai/MssqlMcp/Node/
   NUGET_SERVER: https://api.nuget.org/v3/index.json
   SQLSERVER_MCP_REPO: https://github.com/Azure-Samples/SQL-AI-samples.git
@@ -44,6 +44,18 @@ jobs:
           cd MssqlMcp/Node
           pwd
           ls -l
+
+      - name: Exibir conteudo do arquivo package.json antes das alteracoes
+        run: cat ${{ env.PATH_PROJECT_FILE }}
+
+      - name: Alterar name e adicionar publishConfig no package.json
+        run: |
+          cd ${{ env.PATH_PROJECT }}
+          jq '.name = "mssql-mcp-server-2025-08-a" | .publishConfig = {"access":"public"}' package.json > package.tmp.json
+          mv package.tmp.json package.json
+
+      - name: Exibir conteudo do arquivo package.json apos as alteracoes
+        run: cat ${{ env.PATH_PROJECT_FILE }}
 
       - name: Instalar dependencias
         run: |
