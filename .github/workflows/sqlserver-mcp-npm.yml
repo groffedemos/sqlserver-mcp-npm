@@ -50,7 +50,7 @@ jobs:
       - name: Alterar name e adicionar publishConfig no package.json
         run: |
           cd ${{ env.PATH_PROJECT }}
-          jq '.name = "mssql-mcp-server-2025-08-a" | .publishConfig = {"access":"public"}' package.json > package.tmp.json
+          jq '.name = "mssql-mcp-server-groffe-a" | .publishConfig = {"access":"public"}' package.json > package.tmp.json
           mv package.tmp.json package.json
 
       - name: Exibir conteudo do arquivo package.json apos as alteracoes
