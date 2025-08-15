@@ -61,6 +61,13 @@ jobs:
           cd ${{ env.PATH_PROJECT }}
           npm ci
 
+      - name: Publicar no npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd ${{ env.PATH_PROJECT }}
+          npm publish --access public
+
       # - name: Build do package
       #   run: |
       #     cd ${{ env.PATH_PROJECT }}
