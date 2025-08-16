@@ -8,6 +8,7 @@ on:
   workflow_dispatch:
 
 env:
+  PACKAGE_NAME: mssql-mcp-server-groffe-b
   PATH_PROJECT_FILE: ./sql-ai/MssqlMcp/Node/package.json
   PATH_PROJECT: ./sql-ai/MssqlMcp/Node
   SQLSERVER_MCP_REPO: https://github.com/Azure-Samples/SQL-AI-samples.git
@@ -50,7 +51,7 @@ jobs:
       - name: Alterar name e adicionar publishConfig no package.json
         run: |
           cd ${{ env.PATH_PROJECT }}
-          jq '.name = "mssql-mcp-server-groffe-a" | .publishConfig = {"access":"public"}' package.json > package.tmp.json
+          jq '.name = "${{ env.PACKAGE_NAME }}" | .publishConfig = {"access":"public"}' package.json > package.tmp.json
           mv package.tmp.json package.json
 
       - name: Exibir conteudo do arquivo package.json apos as alteracoes
